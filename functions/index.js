@@ -52,11 +52,13 @@ exports.addTask = functions.https.onRequest((req, res) => {
       const url = `https://www.googleapis.com/language/translate/v2?key=AIzaSyAZySOKJ-gH5wMhSyNaSVcDf5HgxTOco8w&source=en&target=fr&q=${q.task}`;
       request(url, function(err, response) {
         // console.log('response', response)
+        
           const translated = JSON.parse(response.body).data.translations[0].translatedText
           const newTask = {
             assignedUser: q.assignedUser,
             task: q.task,
             createdBy: q.createdBy,
+            createdAt: q.createdAt,
             status: q.status,
             // translated: JSON.parse(response.body).data.translations[0].translatedText
             translated: translated
