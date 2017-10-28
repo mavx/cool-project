@@ -30,6 +30,7 @@ function translate(source, target, text) {
 
 translate('good morning')
 translate('en', 'fr', 'breakfast')
+translate('You are a fool!')
 // console.log(x)
 
 const x = require('./translate.js')
