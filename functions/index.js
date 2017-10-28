@@ -14,17 +14,7 @@ const request = require('request')
 const external = require('./external.js')
 
 const LANGUAGES = ['en', 'es', 'de', 'fr', 'sv', 'ga', 'it', 'jp'];
-// // Take the text parameter passed to this HTTP endpoint and insert it into the
-// // Realtime Database under the path /messages/:pushId/original
-// exports.addMessage = functions.https.onRequest((req, res) => {
-//     // Grab the text parameter.
-//     const original = req.query.text;
-//     // Push the new message into the Realtime Database using the Firebase Admin SDK.
-//     admin.database().ref('/messages').push({original: original}).then(snapshot => {
-//       // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-//       res.redirect(303, snapshot.ref);
-//     });
-//   });
+
 function get(source, target, payload) {
   const url = `https://www.googleapis.com/language/translate/v2?key=AIzaSyAZySOKJ-gH5wMhSyNaSVcDf5HgxTOco8w&source=${source}&target=${target}&q=${payload}`;
   request(url, function(err, response) {
@@ -81,18 +71,7 @@ exports.translate = functions.firestore.document('/tasks/{documentId}')
       // Grab the current value of what was written to the Realtime Database.
       const document = event.data.data() //ACCESS SOME RANDOM DOCUMENT ID HERE
       const task = document.task
-      // console.log('Uppercasing', event.params.documentId, original);
-      // const uppercase = original.toUpperCase();
-      // const translated = external.get('en', 'fr', task)
-      // You must return a Promise when performing asynchronous tasks inside a Functions such as
-      // writing to the Firebase Realtime Database.
-      // Setting an 'uppercase' sibling in the Realtime Database returns a Promise.
-      // return event.data.ref.set({uppercase}, {merge: true});
-      // return event.data.ref.set({translated}, {merge: true});
-
-      // FIRESTORE SHIT
-      // event.data.ref.set(newDocument)
-      // event.data.ref.set({translated: 'batshit'}, {merge: true});
+      
       var object = db.collection('tasks').doc(event.params.documentId);
 
       object.update({
