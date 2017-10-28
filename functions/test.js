@@ -28,8 +28,8 @@ function translate(source, target, text) {
     })
 }
 
-// translate('good morning')
-// translate('en', 'fr', 'breakfast')
+translate('good morning')
+translate('en', 'fr', 'breakfast')
 // console.log(x)
 
 const x = require('./translate.js')
